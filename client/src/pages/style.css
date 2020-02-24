@@ -1,0 +1,21 @@
+body {
+    background-color: #0e243e;
+}
+
+#particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#login {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: white;
+    z-index: 1;
+}
