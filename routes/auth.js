@@ -16,11 +16,14 @@ router.get(
 );
 router.get(
     "/google/callback",
-    passport.authenticate("google", { failureRedirect: "/", session: false }),
+    passport.authenticate("google", {
+        failureRedirect: `${process.env.FRONTEND_URL}`,
+        session: true
+    }),
     function(req, res) {
         var token = req.user.token;
         console.log(req.user);
-        res.redirect(`${process.env.FRONTEND_URL}?token=${token}`);
+        res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
     }
 );
 

@@ -6,24 +6,27 @@ import Particles from "react-particles-js";
 function Login() {
     return (
         <>
-            <div className="login">
-                <div className="particles">
-                    <Particles
-                        params={{
-                            particles: {
-                                number: {
-                                    value: 100
-                                },
-                                size: {
-                                    value: 3
-                                }
+            <div className="particles">
+                <Particles
+                    params={{
+                        particles: {
+                            number: {
+                                value: 400
+                            },
+                            size: {
+                                value: 3
                             }
-                        }}
-                    />
-                </div>
-                <div className="login-card">
-                    <h1>Mail Mover</h1>
+                        }
+                    }}
+                />
+                <div className="login border">
+                    <h1 className="text-center">
+                        <i className="far fa-paper-plane fa-fw"></i>Mail Mover
+                    </h1>
                     <LoginBtn />
+                    <a className="float-right text-secondary" href="/">
+                        What is Mail Mover?
+                    </a>
                 </div>
             </div>
         </>

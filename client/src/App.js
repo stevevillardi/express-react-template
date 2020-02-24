@@ -1,31 +1,43 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
 import queryString from "query-string";
 
 class App extends React.Component {
-    componentWillMount() {
+    isAuthenticated() {
+        return localStorage.getItem("jwt") !== null;
+    }
+
+    componentDidMount() {
         var query = queryString.parse(this.props.location.search);
         if (query.token) {
             window.localStorage.setItem("jwt", query.token);
-            this.props.history.push("/");
+            // this.props.history.push("/");
         }
     }
     render() {
-        return (
-            <div>
-                <Switch>
+        if (this.isAuthenticated()) {
+            return (
+                <>
                     <Route exact path={["/", "/login"]}>
                         <Login />
                     </Route>
-                    <Route>
+                    <Route path={"/dashboard"}>
                         <NoMatch />
                     </Route>
-                </Switch>
-            </div>
-        );
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <Route exact path={["/", "/login"]}>
+                        <Login />
+                    </Route>
+                    <Redirect to="/" />
+                </>
+            );
+        }
     }
 }
 
