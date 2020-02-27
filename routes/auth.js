@@ -21,9 +21,13 @@ router.get(
         session: true
     }),
     function(req, res) {
-        var token = req.user.token;
+        let token = req.user.token;
+        let email = encodeURIComponent(req.user.email);
+        let name = encodeURI(req.user.name);
         console.log(req.user);
-        res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
+        res.redirect(
+            `${process.env.FRONTEND_URL}/dashboard?token=${token}&email=${email}&name=${name}`
+        );
     }
 );
 

@@ -1,44 +1,72 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
+import API from "./utils/API";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import queryString from "query-string";
 
-class App extends React.Component {
-    isAuthenticated() {
-        return localStorage.getItem("jwt") !== null;
-    }
+import { UserContext } from "./context/UserState";
 
-    componentDidMount() {
-        var query = queryString.parse(this.props.location.search);
+const App = props => {
+    const { getUser } = useContext(UserContext);
+
+    const isAuthenticated = () => {
+        return localStorage.getItem("jwt") !== null;
+    };
+
+    const setUser = query => {
+        if (isAuthenticated()) {
+            // email = encodeURIComponent(email);
+            API.getUser(query.email).then(result => {
+                if (result.data) {
+                    API.updateUser({
+                        email: query.email,
+                        name: query.name,
+                        token: query.token
+                    });
+                } else {
+                    API.saveUser({
+                        email: query.email,
+                        name: query.name,
+                        token: query.token
+                    });
+                }
+            });
+            getUser(query.email);
+        }
+    };
+
+    useEffect(() => {
+        var query = queryString.parse(props.location.search);
         if (query.token) {
+            console.log(query);
             window.localStorage.setItem("jwt", query.token);
-            // this.props.history.push("/");
+            setUser(query);
         }
+    }, []);
+
+    if (isAuthenticated()) {
+        return (
+            <>
+                <Route exact path={["/", "/login"]}>
+                    <Login />
+                </Route>
+                <Route path={"/dashboard"}>
+                    <Dashboard />
+                </Route>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <Route exact path={["/", "/login"]}>
+                    <Login />
+                </Route>
+                <Redirect to="/" />
+            </>
+        );
     }
-    render() {
-        if (this.isAuthenticated()) {
-            return (
-                <>
-                    <Route exact path={["/", "/login"]}>
-                        <Login />
-                    </Route>
-                    <Route path={"/dashboard"}>
-                        <NoMatch />
-                    </Route>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <Route exact path={["/", "/login"]}>
-                        <Login />
-                    </Route>
-                    <Redirect to="/" />
-                </>
-            );
-        }
-    }
-}
+};
 
 export default App;
