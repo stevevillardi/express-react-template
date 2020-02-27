@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import API from "./utils/API";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import NoMatch from "./pages/NoMatch";
 import queryString from "query-string";
 
 import { UserContext } from "./context/UserState";

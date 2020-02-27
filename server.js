@@ -35,7 +35,11 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mail_mover");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mail_mover", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
 
 // Start the API server
 app.listen(PORT, function() {

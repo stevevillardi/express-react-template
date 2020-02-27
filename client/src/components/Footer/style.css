@@ -1,0 +1,12 @@
+.footer-main {
+    background-color: #27292a;
+    height: 75ps;
+}
+
+.footer-links {
+    color: white;
+}
+
+.footer-links:hover {
+    color: lightgray;
+}
