@@ -170,7 +170,7 @@ export default function ComplexTable() {
                     exportButton: true,
                     grouping: true,
                     paging: true,
-                    pageSize: 8,
+                    pageSize: 5,
                     pageSizeOptions: [],
                     paginationType: "normal",
                     headerStyle: {
@@ -202,7 +202,8 @@ export default function ComplexTable() {
                     inputProps={{
                         name: "action",
                         id: "outlined-action-native-simple"
-                    }}>
+                    }}
+                >
                     <option value={null}>Select Aciton..</option>
                     <option value={"Stats"}>Gather Stats</option>
                     <option value={"Start"}>Start Migraiton</option>

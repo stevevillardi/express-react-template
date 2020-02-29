@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "mailmover",
+    "private_key_id": "5a3c5e9834a100b1b62039356b931f6a3d1d70d0",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCiz1kUu1x66omV\nUAYIc2onpO28xBiW6Dwwc5C7SZX7UKjZ0Lc+da0OJ+/pX+9TORIRiRmUyfHdS1y1\nE3F/wmIu6YOLMu6iAVLI28ZvZgBqFmCg9Zs179aYP6H6J8HVAxCkNjTsIyC1OKmu\n90JkP5IQeKE43pmukmnT1ZD6cove2wOVwLQDVlSCxwmtTq8cCpIKjaApFaKzoy2D\ngSbb+cI1JLgMdFF5hvMTS0V07FkZNgSHpDOETTB2PArwRoSURieNYg6DQBL8HqIv\n0rk1XmPePM/n0jsG8m+a6ySKR0pHeG4ouaxY0RD1eR4HcnidgHq8QtsQedjxZSum\nhQk0/D3RAgMBAAECggEABb9E505imihss0WOE/bqhbQczAm+TjfsFYAD2TeklKi1\nECzN5iWaZnY2keX3/VeltZKh0Xq0N+4Gy5HQUyyoAXzO3t9dNQDv1J0s9t5aeAQ6\nlJ385NFWwXy4DZwBC7FaMVjEQxxtlXYWx9FMwbwMfno6oza45TSgCZk3rx6TZUpG\nlmclZWhYOZQ6JNUs9r1vZqIXTrKi4d/iIYUgRZ0wKH/CLrcQobbu3mW4hN71UE4s\nU1HPZdwi0DDP0KlhMj4vk4aOJYLKi7080EqElfEXHHQ3zxUSwAeuNGYbKkhXDoGg\n3R4fulVPCNl2Ob5brWzclBYC4G9wpXppTaHeAE0CwQKBgQDapqdCjq8QxuxkZlmw\nOUP3mY/TX7ODH+ZI61KTfZCqKg3vAnRWJo3zVK0IRMu1nczpaN6POdYRj1sNHUpp\nXhCgeEkQTdpk+It5BWwnU2XCHB7oaFK9nk+1HzjONdDwTtEIvtAS1STRt2ok/I36\nH2A7X58U705ZKtypXrzJMOCIkQKBgQC+ntUwhXCXhGRj1IzDv6HiRYD2tvqUio72\nYSueKntZmei5giWfUpsYuwTM6Jb3e9O11aIIxuyJhOX05f1N/z7148cw3mR2kGkx\n4/4Uu69UOwsR/fOTHSkt7pnlP/utZ0/fjYESoI6x/a1A7v9dc2GDtK+QKYDc07rO\nbAgOpOEBQQKBgQCoXOsuNPBY2tPr+2PUbkQHxBcbi/WOYmHQhGNxbp6WaQuRnzI1\npDppxCn41ACIOJowoK+/Wamcm+Zgks1ZlTT4W6bnBwvD9B5xcdt17KHOdhjWnH4Z\nxG1b6k6zen0IjagoM8XEups/YRw6nr40ezR+g4Lbe+m4f2iqgmicAybiAQKBgHht\naEqrQyK2ZaYcVoIkw2Vse7liiJTnpMJLSX83X46QCdOJQbOSQKIzJSk/mIDqHiq2\nuRPKeQ24hH9f/dQU+fXm3aUmG1o8ifkXDSKUIISaeLf5NLUwqx91qoyHC73Vk0Ss\n5WqbPQt+NMLdO0AS8PyAXpo5XkwlB9P5tG1sBSsBAoGBAIzLhmK1bci3PrTMxbp3\nzkmV3mXkxlQATFACO94HpFedNjT4YaFjXLgc4h4371A3OU16FY/JZMP2Tq+KK7r8\nJgp3gMgBIr04c26qpsX2YJXthNBtUSxsUa80dJp4pFTWOGgYjTqVHURWj2w1sNzs\nBrsuEmAw+jwZsLZokD9faP7v\n-----END PRIVATE KEY-----\n",
+    "client_email": "mailmover@mailmover.iam.gserviceaccount.com",
+    "client_id": "104466835151505294368",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mailmover%40mailmover.iam.gserviceaccount.com"
+}
