@@ -60,6 +60,7 @@ export default function ComplexTable() {
             { title: "Target Email", field: "target" },
             { title: "Target Environment", field: "tenv" },
             { title: "Mailbox Size(GB)", field: "size", editable: "never" },
+            { title: "Item Count", field: "count", editable: "never" },
             { title: "Migration Status", field: "status", editable: "never" }
         ],
         data: [
@@ -69,6 +70,7 @@ export default function ComplexTable() {
                 tenv: "O365-1",
                 target: "steve@villardi.io",
                 size: 1.03,
+                count: 1100,
                 status: "Not Started"
             },
             {
@@ -77,6 +79,7 @@ export default function ComplexTable() {
                 tenv: "O365-1",
                 target: "steve2@villardi.io",
                 size: 2.5,
+                count: 1100,
                 status: "In Progress"
             },
             {
@@ -85,6 +88,7 @@ export default function ComplexTable() {
                 tenv: "O365-1",
                 target: "steve3@villardi.io",
                 size: 1.1,
+                count: 1100,
                 status: "Migraiton Error"
             },
             {
@@ -93,6 +97,7 @@ export default function ComplexTable() {
                 tenv: "O365-1",
                 target: "steve4@villardi.io",
                 size: 1.6,
+                count: 1100,
                 status: "Completed"
             },
             {
@@ -101,6 +106,7 @@ export default function ComplexTable() {
                 tenv: "O365-1",
                 target: "steve5@villardi.io",
                 size: 3.7,
+                count: 1100,
                 status: "Completed"
             },
             {
@@ -109,6 +115,7 @@ export default function ComplexTable() {
                 tenv: "O365-1",
                 target: "steve6@villardi.io",
                 size: 7.3,
+                count: 1100,
                 status: "Completed with Warnings"
             }
         ]
@@ -197,6 +204,7 @@ export default function ComplexTable() {
                         id: "outlined-action-native-simple"
                     }}>
                     <option value={null}>Select Aciton..</option>
+                    <option value={"Stats"}>Gather Stats</option>
                     <option value={"Start"}>Start Migraiton</option>
                     <option value={"Stop"}>Stop Migration</option>
                     <option value={"Archive"}>Archive Migraiton</option>
