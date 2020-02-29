@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const db = require("../models");
+
 const passport = require("passport");
 
 function isLoggedIn(req, res, next) {
@@ -8,6 +10,29 @@ function isLoggedIn(req, res, next) {
         return res.redirect("/login");
     }
 }
+
+//Updates backend DB with logged in user so we can check if they are authenticated or not
+const userCheck = (email, token, name) => {
+    db.User.findOne({ email: email })
+        .then(dbModel => {
+            // res.json(dbModel)
+            console.log(`DBModel: ${dbModel}`);
+            if (dbModel) {
+                db.User.findOneAndUpdate(
+                    { email: email },
+                    { token: token },
+                    { name: name }
+                )
+                    .then(dbModel => console.log(`Updated User: ${dbModel}`))
+                    .catch(err => console.log(err));
+            } else {
+                db.User.create({ email: email, token: token, name: name })
+                    .then(dbModel => console.log(` Created User: ${dbModel}`))
+                    .catch(err => console.log(err));
+            }
+        })
+        .catch(err => console.log(err));
+};
 
 /* GET Google Authentication API. */
 router.get(
@@ -24,7 +49,8 @@ router.get(
         let token = req.user.token;
         let email = encodeURIComponent(req.user.email);
         let name = encodeURI(req.user.name);
-        console.log(req.user);
+        // console.log(req.user);
+        userCheck(email, token, name);
         res.redirect(
             `${process.env.FRONTEND_URL}/dashboard?token=${token}&email=${email}&name=${name}`
         );

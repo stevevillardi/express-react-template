@@ -12,69 +12,70 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
+const StyledMenu = withStyles({
+    paper: {
+        border: "1px solid #d3d4d5"
+    }
+})(props => (
+    <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center"
+        }}
+        transformOrigin={{
+            vertical: "top",
+            horizontal: "center"
+        }}
+        {...props}
+    />
+));
+
+const StyledButton = withStyles({
+    root: {
+        backgroundColor: "#0e243e",
+        borderRadius: 3,
+        border: 0,
+        color: "white",
+        height: 48,
+        padding: "0 30px",
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+        "&:hover": {
+            backgroundColor: "#000"
+        }
+    },
+    label: {
+        textTransform: "capitalize"
+    }
+})(Button);
+
+const StyledMenuItem = withStyles(theme => ({
+    root: {
+        "&:hover": {
+            backgroundColor: "#0e243e",
+            "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+                color: theme.palette.common.white
+            }
+        }
+    }
+}))(MenuItem);
+
 function Nav() {
-    const { name, email, token } = useContext(UserContext);
+    const { name, email } = useContext(UserContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
+        console.log(event.currentTarget);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    const StyledMenu = withStyles({
-        paper: {
-            border: "1px solid #d3d4d5"
-        }
-    })(props => (
-        <Menu
-            elevation={0}
-            getContentAnchorEl={null}
-            anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center"
-            }}
-            transformOrigin={{
-                vertical: "top",
-                horizontal: "center"
-            }}
-            {...props}
-        />
-    ));
-
-    const StyledButton = withStyles({
-        root: {
-            backgroundColor: "#0e243e",
-            borderRadius: 3,
-            border: 0,
-            color: "white",
-            height: 48,
-            padding: "0 30px",
-            boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-            "&:hover": {
-                backgroundColor: "#000"
-            }
-        },
-        label: {
-            textTransform: "capitalize"
-        }
-    })(Button);
-
-    const StyledMenuItem = withStyles(theme => ({
-        root: {
-            "&:focus": {
-                backgroundColor: "#0e243e",
-                "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-                    color: theme.palette.common.white
-                }
-            }
-        }
-    }))(MenuItem);
-
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white">
             <a className="navbar-brand" href="/dashboard">
                 <i className="far fa-paper-plane fa-fw"></i>Mail Mover
             </a>
@@ -112,27 +113,29 @@ function Nav() {
                     </li>
                 </ul>
 
-                <Button
-                    aria-controls="customized-menu"
-                    aria-haspopup="true"
-                    variant="contained"
-                    onClick={handleClick}>
+                <StyledButton onClick={handleClick}>
                     <AccountCircleIcon fontSize="large" />
                     {name}
-                </Button>
+                </StyledButton>
                 <StyledMenu
                     id="customized-menu"
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}>
-                    <StyledMenuItem onClick={handleClose}>
+                    <StyledMenuItem
+                        onClick={handleClose}
+                        component={Link}
+                        to="/profile">
                         <ListItemIcon>
                             <PersonIcon fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText primary="My Profile" />
+                        <ListItemText primary={`Settings (${email})`} />
                     </StyledMenuItem>
-                    <StyledMenuItem onClick={handleClose}>
+                    <StyledMenuItem
+                        onClick={handleClose}
+                        component={Link}
+                        to="/enivronments">
                         <ListItemIcon>
                             <LocationCityIcon fontSize="small" />
                         </ListItemIcon>

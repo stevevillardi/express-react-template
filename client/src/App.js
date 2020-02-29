@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
-import API from "./utils/API";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import queryString from "query-string";
@@ -11,37 +10,22 @@ const App = props => {
     const { getUser } = useContext(UserContext);
 
     const isAuthenticated = () => {
-        return localStorage.getItem("jwt") !== null;
-    };
-
-    const setUser = query => {
-        if (isAuthenticated()) {
-            // email = encodeURIComponent(email);
-            API.getUser(query.email).then(result => {
-                if (result.data) {
-                    API.updateUser({
-                        email: query.email,
-                        name: query.name,
-                        token: query.token
-                    });
-                } else {
-                    API.saveUser({
-                        email: query.email,
-                        name: query.name,
-                        token: query.token
-                    });
-                }
-            });
-            getUser(query.email);
+        const loggedUser = localStorage.getItem("email");
+        if (loggedUser) {
+            getUser(loggedUser);
         }
+        return localStorage.getItem("authToken") !== null;
     };
 
     useEffect(() => {
+        console.log(`Stuff: ${props.location.search}`);
         var query = queryString.parse(props.location.search);
         if (query.token) {
             console.log(query);
-            window.localStorage.setItem("jwt", query.token);
-            setUser(query);
+            window.localStorage.setItem("authToken", query.token);
+            window.localStorage.setItem("email", query.email);
+            window.localStorage.setItem("name", query.name);
+            getUser(query.email);
         }
     }, []);
 
@@ -52,6 +36,15 @@ const App = props => {
                     <Login />
                 </Route>
                 <Route path={"/dashboard"}>
+                    <Dashboard />
+                </Route>
+                <Route path={"/enivronments"}>
+                    <Dashboard />
+                </Route>
+                <Route path={"/profile"}>
+                    <Dashboard />
+                </Route>
+                <Route path={"/about"}>
                     <Dashboard />
                 </Route>
             </>
