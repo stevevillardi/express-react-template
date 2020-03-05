@@ -58,6 +58,12 @@ export default function ComplexTable() {
     };
 
     useEffect(() => {
+        API.getEnvironments(userEmail).then(result => {
+            result.data.map(item => {
+                // envList.push(item.envName);
+                envList[item._id] = item.envName;
+            });
+        });
         API.getMailboxes(userEmail).then(result => {
             setState(prevState => {
                 const data = [...prevState.data, ...result.data];
@@ -67,12 +73,6 @@ export default function ComplexTable() {
             // console.log(result);
         });
 
-        API.getEnvironments(userEmail).then(result => {
-            result.data.map(item => {
-                // envList.push(item.envName);
-                envList[item._id] = item.envName;
-            });
-        });
         // console.log(envList);
     }, []);
 
