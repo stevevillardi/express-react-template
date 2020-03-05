@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import API from "../../utils/API";
+
+const userEmail = window.localStorage.getItem("email");
 
 const StyledFormControl = withStyles({
     root: {
@@ -45,6 +48,8 @@ const StyledButton = withStyles({
 export default function ComplexTable() {
     const tableRef = React.createRef();
 
+    let envList = {};
+
     const handleChange = name => event => {
         setState({
             ...state,
@@ -52,84 +57,66 @@ export default function ComplexTable() {
         });
     };
 
+    useEffect(() => {
+        API.getMailboxes(userEmail).then(result => {
+            setState(prevState => {
+                const data = [...prevState.data, ...result.data];
+                // console.log(data);
+                return { ...prevState, data };
+            });
+            // console.log(result);
+        });
+
+        API.getEnvironments(userEmail).then(result => {
+            result.data.map(item => {
+                // envList.push(item.envName);
+                envList[item._id] = item.envName;
+            });
+        });
+        // console.log(envList);
+    }, []);
+
     const [state, setState] = React.useState({
         action: "",
         columns: [
-            { title: "Source Email", field: "source" },
-            { title: "Source Environment", field: "senv" },
-            { title: "Target Email", field: "target" },
-            { title: "Target Environment", field: "tenv" },
-            { title: "Mailbox Size(GB)", field: "size", editable: "never" },
-            { title: "Item Count", field: "count", editable: "never" },
-            { title: "Migration Status", field: "status", editable: "never" }
-        ],
-        data: [
+            { title: "Source Email", field: "sourceEmail" },
             {
-                source: "stevevillardi@gmail.com",
-                senv: "Gmail-1",
-                tenv: "O365-1",
-                target: "steve@villardi.io",
-                size: 1.03,
-                count: 1100,
-                status: "Not Started"
+                title: "Source Environment",
+                field: "sourceEnv",
+                lookup: envList
+            },
+            { title: "Target Email", field: "targetEmail" },
+            {
+                title: "Target Environment",
+                field: "targetEnv",
+                lookup: envList
             },
             {
-                source: "stevevillardi2@gmail.com",
-                senv: "Gmail-1",
-                tenv: "O365-1",
-                target: "steve2@villardi.io",
-                size: 2.5,
-                count: 1100,
-                status: "In Progress"
+                title: "Mailbox Size(GB)",
+                field: "mailboxSize",
+                editable: "never"
             },
+            { title: "Item Count", field: "itemCount", editable: "never" },
             {
-                source: "stevevillardi3@gmail.com",
-                senv: "Gmail-2",
-                tenv: "O365-1",
-                target: "steve3@villardi.io",
-                size: 1.1,
-                count: 1100,
-                status: "Migraiton Error"
-            },
-            {
-                source: "stevevillardi4@gmail.com",
-                senv: "Gmail-2",
-                tenv: "O365-1",
-                target: "steve4@villardi.io",
-                size: 1.6,
-                count: 1100,
-                status: "Completed"
-            },
-            {
-                source: "stevevillardi5@gmail.com",
-                senv: "Gmail-3",
-                tenv: "O365-1",
-                target: "steve5@villardi.io",
-                size: 3.7,
-                count: 1100,
-                status: "Completed"
-            },
-            {
-                source: "stevevillardi6@gmail.com",
-                senv: "Gmail-3",
-                tenv: "O365-1",
-                target: "steve6@villardi.io",
-                size: 7.3,
-                count: 1100,
-                status: "Completed with Warnings"
+                title: "Migration Status",
+                field: "migrationStatus",
+                editable: "never"
             }
-        ]
+        ],
+        data: []
     });
 
     return (
         <>
             <MaterialTable
-                title="Migraiton List"
+                title="Migration List"
                 columns={state.columns}
                 data={state.data}
                 editable={{
                     onRowAdd: newData =>
                         new Promise(resolve => {
+                            const newMailbox = { ...newData, email: userEmail };
+                            API.saveMailbox(newMailbox);
                             setTimeout(() => {
                                 resolve();
                                 setState(prevState => {
@@ -141,6 +128,8 @@ export default function ComplexTable() {
                         }),
                     onRowUpdate: (newData, oldData) =>
                         new Promise(resolve => {
+                            console.log(newData);
+                            API.updateMailbox(newData);
                             setTimeout(() => {
                                 resolve();
                                 if (oldData) {
@@ -154,6 +143,7 @@ export default function ComplexTable() {
                         }),
                     onRowDelete: oldData =>
                         new Promise(resolve => {
+                            API.deleteMailbox(oldData._id);
                             setTimeout(() => {
                                 resolve();
                                 setState(prevState => {
@@ -175,7 +165,13 @@ export default function ComplexTable() {
                     paginationType: "normal",
                     headerStyle: {
                         backgroundColor: "#0e243e",
-                        color: "#FFF"
+                        color: "#FFF",
+                        paddingTop: "5px",
+                        paddingBottom: "5px"
+                    },
+                    cellStyle: {
+                        paddingTop: "5px",
+                        paddingBottom: "5px"
                     }
                 }}
                 actions={[

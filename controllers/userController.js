@@ -21,7 +21,7 @@ module.exports = {
     },
     update: function(req, res) {
         // let email = decodeURIComponent(req.params.email);
-        console.log(req.body);
+        // console.log(req.body);
         db.User.findOneAndUpdate(
             { email: req.params.email },
             { token: req.body.token }

@@ -11,6 +11,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import "./style.css";
+
+const userEmail = window.localStorage.getItem("email");
+const userName = window.localStorage.getItem("name");
 
 const StyledMenu = withStyles({
     paper: {
@@ -86,17 +90,19 @@ function Nav() {
                 data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+            >
                 <span className="navbar-toggler-icon"></span>
             </button>
 
             <div
                 className="collapse navbar-collapse"
-                id="navbarSupportedContent">
+                id="navbarSupportedContent"
+            >
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
                         <a className="nav-link" href="/dashboard">
-                            Home
+                            Dashboard
                         </a>
                     </li>
                     <li className="nav-item active">
@@ -107,7 +113,8 @@ function Nav() {
                     <li className="nav-item active">
                         <a
                             className="nav-link"
-                            href="https://github.com/stevevillardi/mail-mover">
+                            href="https://github.com/stevevillardi/mail-mover"
+                        >
                             Source Code
                         </a>
                     </li>
@@ -115,27 +122,30 @@ function Nav() {
 
                 <StyledButton onClick={handleClick}>
                     <AccountCircleIcon fontSize="large" />
-                    {name}
+                    {userName}
                 </StyledButton>
                 <StyledMenu
                     id="customized-menu"
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
-                    onClose={handleClose}>
+                    onClose={handleClose}
+                >
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/profile">
+                        to="/profile"
+                    >
                         <ListItemIcon>
                             <PersonIcon fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText primary={`Settings (${email})`} />
+                        <ListItemText primary={`Settings (${userEmail})`} />
                     </StyledMenuItem>
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/enivronments">
+                        to="/environments"
+                    >
                         <ListItemIcon>
                             <LocationCityIcon fontSize="small" />
                         </ListItemIcon>
@@ -144,7 +154,8 @@ function Nav() {
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/auth/google/logout">
+                        to="/auth/google/logout"
+                    >
                         <ListItemIcon>
                             <ExitToAppIcon fontSize="small" />
                         </ListItemIcon>

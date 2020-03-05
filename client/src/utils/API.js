@@ -1,23 +1,6 @@
 import axios from "axios";
 
 export default {
-    // Gets all books
-    getBooks: function() {
-        return axios.get("/api/books");
-    },
-    // Gets the book with the given id
-    getBook: function(id) {
-        return axios.get("/api/books/" + id);
-    },
-    // Deletes the book with the given id
-    deleteBook: function(id) {
-        return axios.delete("/api/books/" + id);
-    },
-    // Saves a book to the database
-    saveBook: function(bookData) {
-        return axios.post("/api/books", bookData);
-    },
-
     // Gets all Users
     getUsers: function() {
         return axios.get("/api/users");
@@ -36,5 +19,48 @@ export default {
     },
     updateUser: function(userData) {
         return axios.put("/api/users/" + userData.email, userData);
+    },
+
+    // Gets all Environments for a user
+    getEnvironments: function(email) {
+        return axios.get("/api/environments/user/" + email);
+    },
+    // Gets the user with the given id
+    getEnvironment: function(id) {
+        return axios.get("/api/environments/" + id);
+    },
+    // Deletes the user with the given id
+    deleteEnvironment: function(id) {
+        return axios.delete("/api/environments/" + id);
+    },
+    // Saves a User to the database
+    saveEnvironment: function(environmentData) {
+        return axios.post("/api/environments", environmentData);
+    },
+    updateEnvironment: function(environmentData) {
+        return axios.put(
+            "/api/environments/" + environmentData._id,
+            environmentData
+        );
+    },
+
+    // Gets all Environments for a user
+    getMailboxes: function(email) {
+        return axios.get("/api/mailboxes/user/" + email);
+    },
+    // Gets the user with the given id
+    getMailbox: function(id) {
+        return axios.get("/api/mailboxes/" + id);
+    },
+    // Deletes the user with the given id
+    deleteMailbox: function(id) {
+        return axios.delete("/api/mailboxes/" + id);
+    },
+    // Saves a User to the database
+    saveMailbox: function(mailboxData) {
+        return axios.post("/api/mailboxes", mailboxData);
+    },
+    updateMailbox: function(mailboxData) {
+        return axios.put("/api/mailboxes/" + mailboxData._id, mailboxData);
     }
 };

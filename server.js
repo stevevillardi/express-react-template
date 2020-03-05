@@ -1,23 +1,15 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
-// const cookieSession = require("cookie-session");
 const session = require("express-session");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const passport = require("passport"); // at headerapp.use(passport.initialize()); // after line no.20 (express.static)
+const passport = require("passport");
 require("dotenv").config();
 require("./passport");
 
-// // cookieSession config
-// app.use(
-//     cookieSession({
-//         maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
-//         keys: ["mailmover"]
-//     })
-// );
 app.use(
     session({ secret: "mail-mover", resave: true, saveUninitialized: true })
 );
