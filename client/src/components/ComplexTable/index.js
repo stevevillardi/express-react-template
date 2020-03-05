@@ -119,9 +119,15 @@ export default function ComplexTable() {
                             API.saveMailbox(newMailbox);
                             setTimeout(() => {
                                 resolve();
+                                const formatData = {
+                                    ...newData,
+                                    mailboxSize: "0.0GB",
+                                    migrationStatus: "Not Started",
+                                    itemCount: 0
+                                };
                                 setState(prevState => {
                                     const data = [...prevState.data];
-                                    data.push(newData);
+                                    data.push(formatData);
                                     return { ...prevState, data };
                                 });
                             }, 600);
