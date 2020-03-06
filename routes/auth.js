@@ -47,8 +47,8 @@ router.get(
     }),
     function(req, res) {
         let token = req.user.token;
-        let email = encodeURIComponent(req.user.email);
-        let name = encodeURI(req.user.name);
+        let email = decodeURIComponent(req.user.email);
+        let name = decodeURIComponent(req.user.name);
         // console.log(req.user);
         userCheck(email, token, name);
         res.redirect(

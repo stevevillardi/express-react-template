@@ -9,6 +9,8 @@ export default (state, action) => {
                 token: action.payload.token
                 //   transactions: action.payload
             };
+        case "TRANSACTION_ERROR":
+            console.log(action.payload);
         default:
             return state;
     }

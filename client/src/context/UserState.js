@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
     // Actions
     async function getUser(email) {
         try {
+            console.log(`/api/users/${email}`);
             const res = await axios.get(`/api/users/${email}`);
 
             dispatch({
@@ -28,7 +29,7 @@ export const UserProvider = ({ children }) => {
         } catch (err) {
             dispatch({
                 type: "TRANSACTION_ERROR",
-                payload: err.response.data.error
+                payload: err.response //.data.error
             });
         }
     }
@@ -40,8 +41,7 @@ export const UserProvider = ({ children }) => {
                 name: state.name,
                 token: state.token,
                 getUser
-            }}
-        >
+            }}>
             {children}
         </UserContext.Provider>
     );

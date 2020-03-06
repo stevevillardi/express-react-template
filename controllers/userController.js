@@ -9,7 +9,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findByEmail: function(req, res) {
-        // let email = decodeURIComponent(req.params.email);
+        //let email = decodeURIComponent(req.params.email);
         db.User.findOne({ email: req.params.email })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
