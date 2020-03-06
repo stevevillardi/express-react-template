@@ -11,6 +11,7 @@ export default (state, action) => {
             };
         case "TRANSACTION_ERROR":
             console.log(action.payload);
+            break;
         default:
             return state;
     }

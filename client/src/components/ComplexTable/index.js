@@ -59,7 +59,7 @@ export default function ComplexTable() {
 
     useEffect(() => {
         API.getEnvironments(userEmail).then(result => {
-            result.data.map(item => {
+            result.data.forEach(item => {
                 // envList.push(item.envName);
                 envList[item._id] = item.envName;
             });
@@ -204,8 +204,7 @@ export default function ComplexTable() {
                     inputProps={{
                         name: "action",
                         id: "outlined-action-native-simple"
-                    }}
-                >
+                    }}>
                     <option value={null}>Select Aciton..</option>
                     <option value={"Stats"}>Gather Stats</option>
                     <option value={"Start"}>Start Migraiton</option>

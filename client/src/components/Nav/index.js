@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../context/UserState";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -66,7 +65,6 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 function Nav() {
-    const { name, email } = useContext(UserContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = event => {
@@ -90,15 +88,13 @@ function Nav() {
                 data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
+                aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
 
             <div
                 className="collapse navbar-collapse"
-                id="navbarSupportedContent"
-            >
+                id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
                         <a className="nav-link" href="/dashboard">
@@ -113,8 +109,7 @@ function Nav() {
                     <li className="nav-item active">
                         <a
                             className="nav-link"
-                            href="https://github.com/stevevillardi/mail-mover"
-                        >
+                            href="https://github.com/stevevillardi/mail-mover">
                             Source Code
                         </a>
                     </li>
@@ -129,13 +124,11 @@ function Nav() {
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
+                    onClose={handleClose}>
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/profile"
-                    >
+                        to="/profile">
                         <ListItemIcon>
                             <PersonIcon fontSize="small" />
                         </ListItemIcon>
@@ -144,8 +137,7 @@ function Nav() {
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/environments"
-                    >
+                        to="/environments">
                         <ListItemIcon>
                             <LocationCityIcon fontSize="small" />
                         </ListItemIcon>
@@ -154,8 +146,7 @@ function Nav() {
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/auth/google/logout"
-                    >
+                        to="/auth/google/logout">
                         <ListItemIcon>
                             <ExitToAppIcon fontSize="small" />
                         </ListItemIcon>
