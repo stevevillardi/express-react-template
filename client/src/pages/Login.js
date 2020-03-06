@@ -1,13 +1,13 @@
 import React from "react";
 import LoginBtn from "../components/LoginBtn";
 import "./style.css";
-import Particles from "react-particles-js";
+// import Particles from "react-particles-js";
 
 function Login() {
     return (
         <>
             <div className="particles container-fluid">
-                <Particles
+                {/* <Particles
                     params={{
                         particles: {
                             number: {
@@ -63,7 +63,7 @@ function Login() {
                             }
                         }
                     }}
-                />
+                /> */}
                 <div className="login border">
                     <h1 className="text-center">
                         <i className="far fa-paper-plane fa-fw"></i>Mail Mover
