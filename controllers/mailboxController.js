@@ -9,7 +9,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findMbxByEmail: function(req, res) {
-        console.log(req.session);
+        console.log(req.session.passport);
         db.Mailbox.find({ email: req.params.email })
             .then(dbModel => {
                 // console.log(req);
