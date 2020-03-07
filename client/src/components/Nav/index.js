@@ -79,6 +79,9 @@ function Nav() {
 
     const logoutUser = () => {
         handleClose();
+        window.localStorage.removeItem("name");
+        window.localStorage.removeItem("email");
+        window.localStorage.removeItem("token");
         API.logoutUser();
     };
 

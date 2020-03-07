@@ -59,10 +59,8 @@ router.get(
 
 router.get("/google/logout", function(req, res) {
     req.session.destroy();
-    console.log("triggered");
-    res.redirect(
-        `https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${process.env.FRONTEND_URL}`
-    );
+    // console.log("triggered");
+    res.redirect(`${process.env.FRONTEND_URL}`);
 });
 
 module.exports = router;
