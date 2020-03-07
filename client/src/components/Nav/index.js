@@ -69,7 +69,7 @@ function Nav() {
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
-        console.log(event.currentTarget);
+        // console.log(event.currentTarget);
     };
 
     const handleClose = () => {

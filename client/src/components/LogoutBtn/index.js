@@ -5,7 +5,7 @@ export default function LogoutBtn() {
     return (
         <>
             <a
-                href="http://localhost:3001/auth/google/logout"
+                href="/auth/google/logout"
                 className=" btn-primary btn-block btn mt-3">
                 <div>
                     <i className="fab fa-google fa-fw"></i>
