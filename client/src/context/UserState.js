@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
     // Actions
     async function getUser(email) {
         try {
-            console.log(`/api/users/${email}`);
+            // console.log(`/api/users/${email}`);
             const res = await axios.get(`/api/users/${email}`);
 
             dispatch({
