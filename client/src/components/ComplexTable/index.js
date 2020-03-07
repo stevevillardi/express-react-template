@@ -1,10 +1,30 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import API from "../../utils/API";
+
+const theme = createMuiTheme({
+    overrides: {
+        MuiTableSortLabel: {
+            root: {
+                color: "#fff",
+                "&:hover": {
+                    color: "#bbdefb"
+                }
+            },
+            active: {
+                color: "#bbdefb !important"
+            },
+            icon: {
+                color: "#bbdefb !important"
+            }
+        }
+    }
+});
 
 const StyledFormControl = withStyles({
     root: {
@@ -101,7 +121,7 @@ export default function ComplexTable() {
     });
 
     return (
-        <>
+        <MuiThemeProvider theme={theme}>
             <MaterialTable
                 title="Migration List"
                 columns={state.columns}
@@ -209,6 +229,6 @@ export default function ComplexTable() {
                     Execute
                 </StyledButton>
             </StyledFormControl>
-        </>
+        </MuiThemeProvider>
     );
 }

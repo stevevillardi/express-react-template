@@ -137,11 +137,11 @@ function Nav() {
                     <StyledMenuItem
                         onClick={handleClose}
                         component={Link}
-                        to="/profile">
+                        to="/dashboard">
                         <ListItemIcon>
                             <PersonIcon fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText primary={`Settings (${userEmail})`} />
+                        <ListItemText primary={`Dashboard (${userEmail})`} />
                     </StyledMenuItem>
                     <StyledMenuItem
                         onClick={handleClose}

@@ -1,7 +1,28 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import InputBase from "@material-ui/core/InputBase";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import API from "../../utils/API";
+
+const theme = createMuiTheme({
+    overrides: {
+        MuiTableSortLabel: {
+            root: {
+                color: "#fff",
+                "&:hover": {
+                    color: "#bbdefb"
+                }
+            },
+            active: {
+                color: "#bbdefb !important"
+            },
+            icon: {
+                color: "#bbdefb !important"
+            }
+        }
+    }
+});
 
 export default function EnvironmentTable() {
     const tableRef = React.createRef();
@@ -43,7 +64,7 @@ export default function EnvironmentTable() {
     }, [userEmail]);
 
     return (
-        <>
+        <MuiThemeProvider theme={theme}>
             <MaterialTable
                 title="Environments"
                 columns={state.columns}
@@ -119,6 +140,6 @@ export default function EnvironmentTable() {
                     }
                 ]}
             />
-        </>
+        </MuiThemeProvider>
     );
 }
