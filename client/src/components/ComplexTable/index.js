@@ -6,6 +6,7 @@ import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import API from "../../utils/API";
+import EmailDialog from "../../components/EmailDialog";
 
 const theme = createMuiTheme({
     overrides: {
@@ -74,7 +75,7 @@ const StyledButton = withStyles({
 
 export default function ComplexTable() {
     let userEmail = window.localStorage.getItem("email");
-
+    // let selectedRows = [];
     const tableRef = React.createRef();
     let envList = {};
 
@@ -129,6 +130,18 @@ export default function ComplexTable() {
         ],
         data: []
     });
+    //for button state tracking
+    const [open, setOpen] = React.useState(false);
+    const [selectedRows, setSelectedRows] = React.useState([]);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = value => {
+        setOpen(false);
+        setSelectedRows(value);
+    };
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -136,6 +149,10 @@ export default function ComplexTable() {
                 title="Migration List"
                 columns={state.columns}
                 data={state.data}
+                onSelectionChange={rows => {
+                    setSelectedRows(rows);
+                    // console.log(selectedRows);
+                }}
                 editable={{
                     onRowAdd: newData =>
                         new Promise(resolve => {
@@ -231,14 +248,30 @@ export default function ComplexTable() {
                     }}
                 >
                     <option value={null}>Select Aciton..</option>
-                    <option value={"Stats"}>Gather Stats</option>
-                    <option value={"Start"}>Start Migraiton</option>
-                    <option value={"Stop"}>Stop Migration</option>
-                    <option value={"Archive"}>Archive Migraiton</option>
+                    <option value={"discover stats"}>Gather Stats</option>
+                    <option value={"start migration"}>Start Migraiton</option>
+                    <option value={"stop migration"}>Stop Migration</option>
+                    <option value={"archive mailboxes"}>
+                        Archive Migraiton
+                    </option>
                 </StyledSelect>
-                <StyledButton variant="outlined" size="large">
+                {/* <StyledButton variant="outlined" size="large">
+                    Execute
+                </StyledButton> */}
+                <StyledButton
+                    variant="outlined"
+                    color="primary"
+                    size="large"
+                    onClick={handleClickOpen}
+                >
                     Execute
                 </StyledButton>
+                <EmailDialog
+                    selectedRows={selectedRows}
+                    action={state.action}
+                    open={open}
+                    onClose={handleClose}
+                />
             </StyledFormControl>
         </MuiThemeProvider>
     );
