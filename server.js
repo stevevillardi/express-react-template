@@ -5,6 +5,7 @@ const session = require("express-session");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const cors = require("cors");
 
 const passport = require("passport");
 require("dotenv").config();
@@ -13,7 +14,7 @@ require("./passport");
 app.use(
     session({ secret: "mail-mover", resave: true, saveUninitialized: true })
 );
-
+app.use(cors());
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
