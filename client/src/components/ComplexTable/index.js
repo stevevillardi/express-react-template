@@ -6,8 +6,6 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import API from "../../utils/API";
 
-const userEmail = window.localStorage.getItem("email");
-
 const StyledFormControl = withStyles({
     root: {
         display: "inline-block",
@@ -46,8 +44,10 @@ const StyledButton = withStyles({
 })(Button);
 
 export default function ComplexTable() {
-    const tableRef = React.createRef();
+    const userEmail = window.localStorage.getItem("email");
+    // console.log(userEmail);
 
+    const tableRef = React.createRef();
     let envList = {};
 
     const handleChange = name => event => {
@@ -60,21 +60,16 @@ export default function ComplexTable() {
     useEffect(() => {
         API.getEnvironments(userEmail).then(result => {
             result.data.forEach(item => {
-                // envList.push(item.envName);
                 envList[item._id] = item.envName;
             });
         });
         API.getMailboxes(userEmail).then(result => {
             setState(prevState => {
                 const data = [...prevState.data, ...result.data];
-                // console.log(data);
                 return { ...prevState, data };
             });
-            // console.log(result);
         });
-
-        // console.log(envList);
-    }, []);
+    }, [userEmail]);
 
     const [state, setState] = React.useState({
         action: "",

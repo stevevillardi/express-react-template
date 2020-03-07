@@ -6,22 +6,6 @@ import API from "../../utils/API";
 export default function EnvironmentTable() {
     const tableRef = React.createRef();
     const userEmail = window.localStorage.getItem("email");
-    // API.saveEnvironment({
-    //     email: "stevevillardi@gmail.com",
-    //     envName: "Source Tenant",
-    //     envType: 1,
-    //     description: "Gmail - Source Tenant",
-    //     adminEmail: "admin@source-tenant.com",
-    //     adminPassword: "P@ssw0rd1234"
-    // });
-    // API.saveEnvironment({
-    //     email: "stevevillardi@gmail.com",
-    //     envName: "Target Tenant",
-    //     envType: 1,
-    //     description: "Gmail - Target Tenant",
-    //     adminEmail: "admin@target-tenant.com",
-    //     adminPassword: "P@ssw0rd1234"
-    // });
 
     const [state, setState] = React.useState({
         action: "",
@@ -53,12 +37,10 @@ export default function EnvironmentTable() {
         API.getEnvironments(userEmail).then(result => {
             setState(prevState => {
                 const data = [...prevState.data, ...result.data];
-                console.log(data);
                 return { ...prevState, data };
             });
-            // console.log(result);
         });
-    }, []);
+    }, [userEmail]);
 
     return (
         <>

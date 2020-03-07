@@ -18,7 +18,7 @@ const App = props => {
             window.localStorage.setItem("authToken", query.token);
             window.localStorage.setItem("email", query.email);
             window.localStorage.setItem("name", query.name);
-            console.log(query.email);
+            // console.log(query.email);
             getUser(window.localStorage.getItem("email"));
         }
     }, []);
