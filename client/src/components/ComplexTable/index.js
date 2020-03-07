@@ -22,6 +22,15 @@ const theme = createMuiTheme({
             icon: {
                 color: "#bbdefb !important"
             }
+        },
+        MuiTableCell: {
+            root: {
+                fontSize: "11.5px",
+                paddingTop: "0px !important",
+                paddingBottom: "0px !important",
+                paddingLeft: "5px !important",
+                paddingRight: "5px !important"
+            }
         }
     }
 });
@@ -219,7 +228,8 @@ export default function ComplexTable() {
                     inputProps={{
                         name: "action",
                         id: "outlined-action-native-simple"
-                    }}>
+                    }}
+                >
                     <option value={null}>Select Aciton..</option>
                     <option value={"Stats"}>Gather Stats</option>
                     <option value={"Start"}>Start Migraiton</option>

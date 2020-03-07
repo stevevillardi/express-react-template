@@ -20,6 +20,11 @@ const theme = createMuiTheme({
             icon: {
                 color: "#bbdefb !important"
             }
+        },
+        MuiTableCell: {
+            root: {
+                fontSize: "11.5px"
+            }
         }
     }
 });
