@@ -13,9 +13,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./style.css";
 import API from "../../utils/API";
 
-const userEmail = window.localStorage.getItem("email");
-const userName = window.localStorage.getItem("name");
-
 const StyledMenu = withStyles({
     paper: {
         border: "1px solid #d3d4d5"
@@ -67,6 +64,9 @@ const StyledMenuItem = withStyles(theme => ({
 
 function Nav() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const userEmail = window.localStorage.getItem("email");
+    const userName = window.localStorage.getItem("name");
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
