@@ -152,7 +152,10 @@ function Nav() {
                         </ListItemIcon>
                         <ListItemText primary="Environments" />
                     </StyledMenuItem>
-                    <StyledMenuItem onClick={logoutUser}>
+                    <StyledMenuItem
+                        onClick={logoutUser}
+                        component={Link}
+                        to="/login">
                         <ListItemIcon>
                             <ExitToAppIcon fontSize="small" />
                         </ListItemIcon>

@@ -59,8 +59,8 @@ router.get(
 
 router.get("/google/logout", function(req, res) {
     req.session.destroy();
-    res.redirect(`${process.env.FRONTEND_URL}/login`);
-    console.log("triggered");
+    // res.redirect(`${process.env.FRONTEND_URL}/login`);
+    // console.log("triggered");
 });
 
 module.exports = router;
