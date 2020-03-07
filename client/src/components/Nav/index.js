@@ -81,7 +81,7 @@ function Nav() {
         handleClose();
         window.localStorage.removeItem("name");
         window.localStorage.removeItem("email");
-        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("authToken");
         API.logoutUser();
     };
 

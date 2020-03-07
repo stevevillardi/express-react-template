@@ -11,7 +11,7 @@ module.exports = {
     findEnvByEmail: function(req, res) {
         db.Environment.find({ email: req.params.email })
             .then(dbModel => {
-                // console.log(req);
+                // console.log(req.user.email);
                 res.json(dbModel);
             })
             .catch(err => res.status(422).json(err));

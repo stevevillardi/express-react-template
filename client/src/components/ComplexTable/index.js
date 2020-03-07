@@ -44,8 +44,7 @@ const StyledButton = withStyles({
 })(Button);
 
 export default function ComplexTable() {
-    const userEmail = window.localStorage.getItem("email");
-    // console.log(userEmail);
+    let userEmail = window.localStorage.getItem("email");
 
     const tableRef = React.createRef();
     let envList = {};
