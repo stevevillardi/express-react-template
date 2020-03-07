@@ -77,15 +77,16 @@ export default function ComplexTable() {
     };
 
     useEffect(() => {
+        // console.log(userEmail);
         API.getEnvironments(userEmail).then(result => {
             result.data.forEach(item => {
                 envList[item._id] = item.envName;
             });
-        });
-        API.getMailboxes(userEmail).then(result => {
-            setState(prevState => {
-                const data = [...prevState.data, ...result.data];
-                return { ...prevState, data };
+            API.getMailboxes(userEmail).then(result => {
+                setState(prevState => {
+                    const data = [...prevState.data, ...result.data];
+                    return { ...prevState, data };
+                });
             });
         });
     }, [userEmail]);
