@@ -22,7 +22,7 @@ const App = props => {
         // console.log(`Stuff: ${props.location.search}`);
         var query = queryString.parse(props.location.search);
         if (query.token) {
-            console.log(query);
+            // console.log(query);
             window.localStorage.setItem("authToken", query.token);
             window.localStorage.setItem("email", query.email);
             window.localStorage.setItem("name", query.name);
@@ -56,7 +56,6 @@ const App = props => {
                 <Route exact path={["/", "/login"]}>
                     <Login />
                 </Route>
-                <Redirect to="/" />
             </>
         );
     }
