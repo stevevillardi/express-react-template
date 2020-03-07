@@ -11,6 +11,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./style.css";
+import API from "../../utils/API";
 
 const userEmail = window.localStorage.getItem("email");
 const userName = window.localStorage.getItem("name");
@@ -74,6 +75,11 @@ function Nav() {
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const logoutUser = () => {
+        handleClose();
+        API.logoutUser();
     };
 
     return (
@@ -143,10 +149,7 @@ function Nav() {
                         </ListItemIcon>
                         <ListItemText primary="Environments" />
                     </StyledMenuItem>
-                    <StyledMenuItem
-                        onClick={handleClose}
-                        component={Link}
-                        to="/auth/google/logout">
+                    <StyledMenuItem onClick={logoutUser}>
                         <ListItemIcon>
                             <ExitToAppIcon fontSize="small" />
                         </ListItemIcon>

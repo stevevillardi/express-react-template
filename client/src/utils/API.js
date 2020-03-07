@@ -62,5 +62,9 @@ export default {
     },
     updateMailbox: function(mailboxData) {
         return axios.put("/api/mailboxes/" + mailboxData._id, mailboxData);
+    },
+
+    logoutUser: function() {
+        return axios.get("/auth/google/logout");
     }
 };

@@ -58,7 +58,7 @@ router.get(
 );
 
 router.get("/google/logout", function(req, res) {
-    req.logout();
+    req.session.destroy();
     console.log("triggered");
     res.redirect(
         `https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${process.env.FRONTEND_URL}`
