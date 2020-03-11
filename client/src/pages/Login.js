@@ -69,7 +69,9 @@ function Login() {
                         <i className="far fa-paper-plane fa-fw"></i>Mail Mover
                     </h1>
                     <LoginBtn />
-                    <a className="float-right text-secondary" href="/">
+                    <a
+                        className="float-right text-secondary"
+                        href="https://github.com/stevevillardi/">
                         What is Mail Mover?
                     </a>
                 </div>

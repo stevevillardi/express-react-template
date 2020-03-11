@@ -68,5 +68,9 @@ export default {
 
     logoutUser: function() {
         return axios.get("/auth/google/logout");
+    },
+
+    processJob: function(mailboxData, action) {
+        return axios.put(`/api/jobs/${action}/${mailboxData._id}`, mailboxData);
     }
 };

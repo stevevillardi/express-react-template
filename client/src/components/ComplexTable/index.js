@@ -76,7 +76,7 @@ const StyledButton = withStyles({
 export default function ComplexTable() {
     let userEmail = window.localStorage.getItem("email");
     // let selectedRows = [];
-    const tableRef = React.createRef();
+    // const tableRef = React.createRef();
     let envList = {};
 
     const handleChange = name => event => {
@@ -227,8 +227,9 @@ export default function ComplexTable() {
                         icon: "refresh",
                         tooltip: "Refresh Data",
                         isFreeAction: true,
-                        onClick: () =>
-                            tableRef.current && tableRef.current.onQueryChange()
+                        onClick: () => {
+                            window.location.reload(false);
+                        }
                     }
                 ]}
             />
@@ -246,8 +247,7 @@ export default function ComplexTable() {
                     inputProps={{
                         name: "action",
                         id: "outlined-action-native-simple"
-                    }}
-                >
+                    }}>
                     <option value={null}>Select Action..</option>
                     <option value={"discover statistics"}>
                         Discover Statistics
@@ -263,8 +263,7 @@ export default function ComplexTable() {
                     variant="outlined"
                     color="primary"
                     size="large"
-                    onClick={handleClickOpen}
-                >
+                    onClick={handleClickOpen}>
                     Execute
                 </StyledButton>
                 <EmailDialog

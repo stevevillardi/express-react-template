@@ -40,15 +40,36 @@ export default function EmailDialog(props) {
 
     const handleClose = action => {
         onClose(selectedRows);
-        // if (action) {
-        //     queueMailboxJob(selectedRows);
-        // }
-
-        if (action === "discover stats") {
-            discoverMailboxJob(selectedRows);
+        console.log(action);
+        if (action === "discover statistics") {
+            queueMailboxJob(selectedRows);
+            setTimeout(() => {
+                discoverMailboxJob(selectedRows);
+            }, 2000);
         }
         if (action === "reset migration") {
-            resetMailboxJob(selectedRows);
+            queueMailboxJob(selectedRows);
+            setTimeout(() => {
+                resetMailboxJob(selectedRows);
+            }, 2000);
+        }
+        if (action === "start migration") {
+            queueMailboxJob(selectedRows);
+            setTimeout(() => {
+                startMailboxJob(selectedRows);
+            }, 2000);
+        }
+        if (action === "stop migration") {
+            queueMailboxJob(selectedRows);
+            setTimeout(() => {
+                stopMailboxJob(selectedRows);
+            }, 2000);
+        }
+        if (action === "archive mailboxes") {
+            queueMailboxJob(selectedRows);
+            setTimeout(() => {
+                archiveMailboxJob(selectedRows);
+            }, 2000);
         }
     };
 
@@ -57,8 +78,7 @@ export default function EmailDialog(props) {
             className={classes.dialogButton}
             onClose={handleClose}
             aria-labelledby="simple-dialog-title"
-            open={open}
-        >
+            open={open}>
             <DialogTitle className={classes.title} id="simple-dialog-title">
                 Confirm Action
             </DialogTitle>
@@ -73,8 +93,7 @@ export default function EmailDialog(props) {
                     className={classes.button}
                     onClick={() => {
                         handleClose(action);
-                    }}
-                >
+                    }}>
                     Confirm
                 </Button>
                 <Button
@@ -83,8 +102,7 @@ export default function EmailDialog(props) {
                     className={classes.button}
                     onClick={() => {
                         handleClose();
-                    }}
-                >
+                    }}>
                     Cancel
                 </Button>
             </div>

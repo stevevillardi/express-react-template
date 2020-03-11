@@ -16,7 +16,7 @@ const userCheck = (email, token, name) => {
     db.User.findOne({ email: email })
         .then(dbModel => {
             // res.json(dbModel)
-            console.log(`DBModel: ${dbModel}`);
+            // console.log(`DBModel: ${dbModel}`);
             if (dbModel) {
                 db.User.findOneAndUpdate(
                     { email: email },

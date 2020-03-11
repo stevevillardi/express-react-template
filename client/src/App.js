@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Route } from "react-router-dom";
 import Login from "./pages/Login";
+import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Environment from "./pages/Environment";
 import queryString from "query-string";
@@ -39,7 +40,7 @@ const App = props => {
                     <Dashboard />
                 </Route>
                 <Route path={"/about"}>
-                    <Dashboard />
+                    <About />
                 </Route>
             </>
         );
@@ -48,6 +49,9 @@ const App = props => {
             <>
                 <Route exact path={["/", "/login"]}>
                     <Login />
+                </Route>
+                <Route path={"/about"}>
+                    <About />
                 </Route>
             </>
         );

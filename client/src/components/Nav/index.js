@@ -115,13 +115,13 @@ function Nav() {
                             About
                         </a>
                     </li>
-                    <li className="nav-item active">
+                    {/* <li className="nav-item active">
                         <a
                             className="nav-link"
                             href="https://github.com/stevevillardi/mail-mover">
                             Source Code
                         </a>
-                    </li>
+                    </li> */}
                 </ul>
 
                 <StyledButton onClick={handleClick}>

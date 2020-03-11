@@ -19,7 +19,7 @@ export const JobProvider = ({ children }) => {
     // Actions
     async function discoverMailboxJob(selectedRows) {
         selectedRows.forEach(mailbox => {
-            console.log(mailbox);
+            // console.log(mailbox);
             try {
                 dispatch({
                     type: "DISCOVER_USER",
@@ -35,7 +35,7 @@ export const JobProvider = ({ children }) => {
     }
     async function resetMailboxJob(selectedRows) {
         selectedRows.forEach(mailbox => {
-            console.log(mailbox);
+            // console.log(mailbox);
             try {
                 dispatch({
                     type: "RESET_MIGRATION",
@@ -49,9 +49,9 @@ export const JobProvider = ({ children }) => {
             }
         });
     }
-    async function migrateMailboxJob(selectedRows) {
+    async function startMailboxJob(selectedRows) {
         selectedRows.forEach(mailbox => {
-            console.log(mailbox);
+            // console.log(mailbox);
             try {
                 dispatch({
                     type: "START_MIGRATION",
@@ -67,7 +67,7 @@ export const JobProvider = ({ children }) => {
     }
     async function stopMailboxJob(selectedRows) {
         selectedRows.forEach(mailbox => {
-            console.log(mailbox);
+            // console.log(mailbox);
             try {
                 dispatch({
                     type: "STOP_MIGRATION",
@@ -83,7 +83,7 @@ export const JobProvider = ({ children }) => {
     }
     async function archiveMailboxJob(selectedRows) {
         selectedRows.forEach(mailbox => {
-            console.log(mailbox);
+            // console.log(mailbox);
             try {
                 dispatch({
                     type: "ARCHIVE_MIGRATION",
@@ -99,7 +99,7 @@ export const JobProvider = ({ children }) => {
     }
     async function queueMailboxJob(selectedRows) {
         selectedRows.forEach(mailbox => {
-            console.log(mailbox);
+            // console.log(mailbox);
             try {
                 dispatch({
                     type: "QUEUE_MIGRATION",
@@ -119,13 +119,12 @@ export const JobProvider = ({ children }) => {
             value={{
                 selectedRows: state.selectedRows,
                 discoverMailboxJob,
-                migrateMailboxJob,
+                startMailboxJob,
                 stopMailboxJob,
                 archiveMailboxJob,
                 resetMailboxJob,
                 queueMailboxJob
-            }}
-        >
+            }}>
             {children}
         </JobContext.Provider>
     );

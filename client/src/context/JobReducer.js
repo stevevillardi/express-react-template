@@ -1,82 +1,74 @@
 import API from "../utils/API";
 
-const randomItemCount = () => {
-    return Math.floor(Math.random() * 15000) + 200;
-};
-
-const randomDataSize = () => {
-    const precision = 100; // 2 decimals
-    const randomnum =
-        Math.floor(
-            Math.random() * (10 * precision - 1 * precision) + 1 * precision
-        ) /
-        (1 * precision);
-    return `${randomnum}GB`;
-};
-
-const randomPercentage = () => {
-    return Math.floor(Math.random() * 100) + 20;
-};
 export default (state, action) => {
     let mailbox = action.payload;
     switch (action.type) {
         case "DISCOVER_USER":
-            setTimeout(() => {
-                mailbox.migrationStatus = "Discovered";
-                mailbox.mailboxSize = randomDataSize();
-                mailbox.itemCount = randomItemCount();
+            // mailbox.migrationStatus = "Discovered";
+            // mailbox.mailboxSize = randomDataSize();
+            // mailbox.itemCount = randomItemCount();
 
-                API.updateMailbox(mailbox);
-                console.log(state);
-                return {
-                    ...state,
-                    mailboxJob: [...state.mailboxJob, mailbox]
-                };
-            }, 5000);
+            // API.updateMailbox(mailbox);
+            API.processJob(mailbox, "discover");
+            // console.log(state);
+            return {
+                ...state,
+                mailboxJob: [...state.mailboxJob, mailbox]
+            };
 
         case "QUEUE_MIGRATION":
-            mailbox.migrationStatus = "Job Queued";
+            mailbox.migrationStatus = "In Progress";
             API.updateMailbox(mailbox);
+            // API.processJob(mailbox, "queue");
+            return {
+                ...state,
+                mailboxJob: [...state.mailboxJob, mailbox]
+            };
+        case "INPROGRESS_MIGRATION":
+            mailbox.migrationStatus = "InProgress";
+            API.processJob(mailbox, "inprogress");
+            // API.processJob(mailbox, "queue");
             return {
                 ...state,
                 mailboxJob: [...state.mailboxJob, mailbox]
             };
         case "START_MIGRATION":
-            setTimeout(() => {
-                mailbox.migrationStatus = "Completed";
+            // mailbox.migrationStatus = "Completed";
 
-                API.updateMailbox(mailbox);
-                return {
-                    ...state,
-                    mailboxJob: [...state.mailboxJob, mailbox]
-                };
-            }, 5000);
+            // API.updateMailbox(mailbox);
+            API.processJob(mailbox, "start");
+            return {
+                ...state,
+                mailboxJob: [...state.mailboxJob, mailbox]
+            };
+
         case "STOP_MIGRATION":
-            setTimeout(() => {
-                mailbox.migrationStatus = `Stopped (${randomPercentage()}%)`;
+            // mailbox.migrationStatus = `Stopped (${randomPercentage()}%)`;
 
-                API.updateMailbox(mailbox);
-                return {
-                    ...state,
-                    mailboxJob: [...state.mailboxJob, mailbox]
-                };
-            }, 5000);
+            // API.updateMailbox(mailbox);
+            API.processJob(mailbox, "stop");
+            return {
+                ...state,
+                mailboxJob: [...state.mailboxJob, mailbox]
+            };
+
         case "ARCHIVE_MIGRATION":
-            setTimeout(() => {
-                mailbox.migrationStatus = "Archived";
+            // mailbox.migrationStatus = "Archived";
 
-                API.updateMailbox(mailbox);
-                return {
-                    ...state,
-                    mailboxJob: [...state.mailboxJob, mailbox]
-                };
-            }, 5000);
+            // API.updateMailbox(mailbox);
+            API.processJob(mailbox, "archive");
+            return {
+                ...state,
+                mailboxJob: [...state.mailboxJob, mailbox]
+            };
+
         case "RESET_MIGRATION":
-            mailbox.migrationStatus = "Not Started";
-            mailbox.mailboxSize = "0.00GB";
-            mailbox.itemCount = 0;
+            // mailbox.migrationStatus = "Not Started";
+            // mailbox.mailboxSize = "0.00GB";
+            // mailbox.itemCount = 0;
 
-            API.updateMailbox(mailbox);
+            // API.updateMailbox(mailbox);
+            API.processJob(mailbox, "reset");
             return {
                 ...state,
                 mailboxJob: [...state.mailboxJob, mailbox]
