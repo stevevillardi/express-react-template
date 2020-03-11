@@ -135,6 +135,7 @@ export default function ComplexTable() {
     const [selectedRows, setSelectedRows] = React.useState([]);
 
     const handleClickOpen = () => {
+        // console.log("hit");
         setOpen(true);
     };
 
@@ -175,7 +176,7 @@ export default function ComplexTable() {
                         }),
                     onRowUpdate: (newData, oldData) =>
                         new Promise(resolve => {
-                            console.log(newData);
+                            // console.log(newData);
                             API.updateMailbox(newData);
                             setTimeout(() => {
                                 resolve();
@@ -247,17 +248,17 @@ export default function ComplexTable() {
                         id: "outlined-action-native-simple"
                     }}
                 >
-                    <option value={null}>Select Aciton..</option>
-                    <option value={"discover stats"}>Gather Stats</option>
-                    <option value={"start migration"}>Start Migraiton</option>
+                    <option value={null}>Select Action..</option>
+                    <option value={"discover statistics"}>
+                        Discover Statistics
+                    </option>
+                    <option value={"start migration"}>Start Migration</option>
                     <option value={"stop migration"}>Stop Migration</option>
+                    <option value={"reset migration"}>Reset Migration</option>
                     <option value={"archive mailboxes"}>
-                        Archive Migraiton
+                        Archive Migration
                     </option>
                 </StyledSelect>
-                {/* <StyledButton variant="outlined" size="large">
-                    Execute
-                </StyledButton> */}
                 <StyledButton
                     variant="outlined"
                     color="primary"
